@@ -14,6 +14,9 @@
 //Authentication Routes
 Auth::routes();
 
+//Route after login
+//Route::get('/home', 'UsersController@checkUser');
+
 Route::get('/', function() {
     return view('index');
 });
@@ -48,5 +51,7 @@ Route::get('/contact', function() {
     return view('contact');
 });
 
+
 //Add to Shopping cart Route
 Route::get('/add-to-cart/{id}', 'ShirtsController@addToCart');
+
