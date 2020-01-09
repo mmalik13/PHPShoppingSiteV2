@@ -19,32 +19,34 @@
         </li>
       </ul>
       <ul class="navbar-nav user-info">   
-      @guest
+      <?php if(auth()->guard()->guest()): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a>
                             </li>
-                            @if (Route::has('register'))
+                            <?php if(Route::has('register')): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a>
                                 </li>
-                            @endif
-                        @else
+                            <?php endif; ?>
+                        <?php else: ?>
                             <li class="nav-item">
-                                <span class="text-white">{{ Auth::user()->name }}</span>
+                                <span class="text-white"><?php echo e(Auth::user()->name); ?></span>
                                 <li class="nav-item">
                                   <a class="nav-link text-light d-flex align-items-center" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    <?php echo e(__('Logout')); ?>
+
                                   </a>
-                                  @if($user->id == 1)
+                                  <?php if($user->id == 1): ?>
                                   <a href="/admin">admin panel</a>
-                                  @endif    
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
+                                  <?php endif; ?>    
+                                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                        <?php echo csrf_field(); ?>
                                     </form>
                                 </div>
                             </li>
-                        @endguest      
+                        <?php endif; ?>      
       </ul>
     </div>
   </nav>
 
+<?php /**PATH C:\Users\1332549\Desktop\custom-tees2\PHPShoppingSiteV2\custom-tees\resources\views/includes/navbar.blade.php ENDPATH**/ ?>

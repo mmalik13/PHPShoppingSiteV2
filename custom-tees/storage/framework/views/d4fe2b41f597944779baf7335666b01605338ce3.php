@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Oleo+Script&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,7 +19,7 @@
                         <h1 class="text-center text-lg-left"><a class="brand-name" href="#">Custom Tees</a></h1>
                     </div>
                     <div class="col-12 col-lg-7 w-lg-100 d-lg-flex align-items-lg-center">
-                        @include('includes.search')
+                        <?php echo $__env->make('includes.search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 d-lg-flex justify-content-lg-end">
-                            @include('includes.navbar')
+                            <?php echo $__env->make('includes.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             
                         </div>
                     </div>
@@ -37,8 +37,8 @@
 
 
         <div class="container">
-            @include('includes.messages')
-            @yield('content')
+            <?php echo $__env->make('includes.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
 
         <!-- For Bootstrap -->
@@ -50,3 +50,4 @@
                 crossorigin="anonymous"></script>
     </body>
 </html>
+<?php /**PATH C:\Users\1332549\Desktop\custom-tees2\PHPShoppingSiteV2\custom-tees\resources\views/layouts/app.blade.php ENDPATH**/ ?>

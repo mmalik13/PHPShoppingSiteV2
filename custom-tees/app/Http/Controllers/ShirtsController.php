@@ -185,14 +185,4 @@ class ShirtsController extends Controller
         return redirect('/admin')->with('success', 'Post Deleted!');
     }
 
-    public function addToCart(Request $request, $id)
-    {
-        $shirt = Shirt::find($id);
-        $oldShoppingCart = Session::has('shoppingCart') ? Session::get('shoppingCart') : null;
-        $shoppingCart = new ShoppingCart($oldShoppingCart);
-        $shoppingCart->add($shirt, $shirt->id);
-        $request->session()->put('shoppingCart', $shoppingCart);
-        dd($request->session()->get('shoppingCart'));
-        return view('catalog');
-    }
 }

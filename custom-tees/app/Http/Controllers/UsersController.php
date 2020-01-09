@@ -17,14 +17,16 @@ class UsersController extends Controller
             $userId = Auth::id();
             $shirts = Shirt::orderBy('name', 'desc')->paginate(9);
             if($userId == $adminId){
-                return view('admin')->with('shirts', $shirts);
+                return view('admin')->with('shirts', $shirts)
+                                    ->with('user', $user);
             }
             else{
-                return view('catalog')->with('user', $user);
+                return view('catalog')->with('user', $user)
+                                      ->with('shirts',$shirts);  
             }
         }
         else{
-            return view('catalog');
+            return view('index')->with('shirts', $shirts);
         }
     }
 }
