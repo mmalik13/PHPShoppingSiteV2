@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Shirt;
+use App\Http\Controllers\ShirtsController;
 
 class UsersController extends Controller
 {   
@@ -13,8 +15,9 @@ class UsersController extends Controller
         {   $user = Auth::user();
             $adminId = 1;
             $userId = Auth::id();
+            $shirts = Shirt::orderBy('name', 'desc')->paginate(9);
             if($userId == $adminId){
-                return view('admin');
+                return view('admin')->with('shirts', $shirts);
             }
             else{
                 return view('catalog')->with('user', $user);

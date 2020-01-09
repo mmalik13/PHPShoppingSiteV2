@@ -15,7 +15,7 @@
 Auth::routes();
 
 //Route after login
-//Route::get('/home', 'UsersController@checkUser');
+Route::get('/home', 'UsersController@checkUser');
 
 Route::get('/', function() {
     return view('index');
